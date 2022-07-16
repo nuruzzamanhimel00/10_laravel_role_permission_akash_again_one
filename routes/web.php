@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\DashboardController;
 
 /*
@@ -22,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix'=>'admin','namespace'=>'Backend'],function(){
+Route::group(['prefix'=>'admin'],function(){
     Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('/roles', RolesController::class);
 });
+
