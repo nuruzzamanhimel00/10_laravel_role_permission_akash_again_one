@@ -3,6 +3,11 @@
 2) php artisan optimize:clear
 3)php artisan permission:cache-reset
 
+// cache clear command
+ php artisan optimize:clear
+ # or
+ php artisan config:clear
+
 ############################## laravel role permission spatie Buildin Method ##################################
 ##### spatie  install first time #####
 ** Prerequisites:--
