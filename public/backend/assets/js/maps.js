@@ -359,7 +359,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "africa",
             "title": "Africa",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern1.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern1.png') }},
                 "width": 4,
                 "height": 4
             }
@@ -367,7 +367,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "asia",
             "title": "Asia",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern2.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern2.png') }},
                 "width": 4,
                 "height": 4
             }
@@ -375,7 +375,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "australia",
             "title": "Australia",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern3.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern3.png') }},
                 "width": 4,
                 "height": 4,
                 "color": "#BBBB00"
@@ -384,7 +384,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "europe",
             "title": "Europe",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern4.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern4.png') }},
                 "width": 4,
                 "height": 4
             }
@@ -392,7 +392,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "north_america",
             "title": "North America",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern5.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern5.png') }},
                 "width": 4,
                 "height": 4
             }
@@ -400,7 +400,7 @@ var map = AmCharts.makeChart("mapamchart4", {
             "id": "south_america",
             "title": "South America",
             "pattern": {
-                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern6.png",
+                "url": "https://www.amcharts.com/lib/3/patterns/black/pattern6.png') }},
                 "width": 4,
                 "height": 4
             }
