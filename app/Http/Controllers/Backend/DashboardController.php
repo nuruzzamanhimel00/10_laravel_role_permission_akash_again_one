@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     public function index(){
 
-       return view("backends.layouts.master");
+       return view("backends.pages.dashboad.index");
     }
 }
