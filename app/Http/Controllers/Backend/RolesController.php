@@ -54,16 +54,10 @@ class RolesController extends Controller
             $role->syncPermissions($permissions);
         }
 
-        return back();
-        // dd($request->all());
+        return back()->with('success','Role Created Sucessfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //

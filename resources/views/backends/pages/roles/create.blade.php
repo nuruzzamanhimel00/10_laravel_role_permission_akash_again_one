@@ -33,6 +33,13 @@
                         </div>
                         <div class="form-group">
                             <label for="roleName">Permissions</label>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="allPermission"  >
+                                <label class="form-check-label" for="permissionName">
+                                   ALL
+                                </label>
+                            </div>
+                            <br>
                             @foreach ($permissions as $permission )
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="permissionName" name="permissions[]" value="{{ $permission->name }}">
@@ -41,10 +48,7 @@
                                     </label>
                                 </div>
                             @endforeach
-
-
                         </div>
-
 
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Role name</button>
                     </form>
@@ -55,5 +59,13 @@
 @endsection
 
 @push('script')
-
+    <script>
+        $(document).on('change','#allPermission',function(){
+           if($(this).prop('checked')){
+            $("input[type=checkbox]").prop('checked',true);
+           }else {
+            $("input[type=checkbox]").prop('checked',false);
+            }
+        });
+    </script>
 @endpush
