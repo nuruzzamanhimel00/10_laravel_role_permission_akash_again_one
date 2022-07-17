@@ -40,21 +40,21 @@
     /*================================
     slimscroll activation
     ==================================*/
-    $('.menu-inner').slimScroll({
-        height: 'auto'
-    });
-    $('.nofity-list').slimScroll({
-        height: '435px'
-    });
-    $('.timeline-area').slimScroll({
-        height: '500px'
-    });
-    $('.recent-activity').slimScroll({
-        height: 'calc(100vh - 114px)'
-    });
-    $('.settings-list').slimScroll({
-        height: 'calc(100vh - 158px)'
-    });
+    // $('.menu-inner').slimScroll({
+    //     height: 'auto'
+    // });
+    // $('.nofity-list').slimScroll({
+    //     height: '435px'
+    // });
+    // $('.timeline-area').slimScroll({
+    //     height: '500px'
+    // });
+    // $('.recent-activity').slimScroll({
+    //     height: 'calc(100vh - 114px)'
+    // });
+    // $('.settings-list').slimScroll({
+    //     height: 'calc(100vh - 158px)'
+    // });
 
     /*================================
     stickey Header
@@ -75,7 +75,7 @@
     /*================================
     form bootstrap validation
     ==================================*/
-    $('[data-toggle="popover"]').popover()
+    // $('[data-toggle="popover"]').popover()
 
     /*------------- Start form Validation -------------*/
     window.addEventListener('load', function() {
@@ -93,24 +93,24 @@
         });
     }, false);
 
-    /*================================
-    datatable active
-    ==================================*/
-    if ($('#dataTable').length) {
-        $('#dataTable').DataTable({
-            responsive: true
-        });
-    }
-    if ($('#dataTable2').length) {
-        $('#dataTable2').DataTable({
-            responsive: true
-        });
-    }
-    if ($('#dataTable3').length) {
-        $('#dataTable3').DataTable({
-            responsive: true
-        });
-    }
+    // /*================================
+    // datatable active
+    // ==================================*/
+    // if ($('#dataTable').length) {
+    //     $('#dataTable').DataTable({
+    //         responsive: true
+    //     });
+    // }
+    // if ($('#dataTable2').length) {
+    //     $('#dataTable2').DataTable({
+    //         responsive: true
+    //     });
+    // }
+    // if ($('#dataTable3').length) {
+    //     $('#dataTable3').DataTable({
+    //         responsive: true
+    //     });
+    // }
 
 
     /*================================
@@ -140,39 +140,6 @@
         $('.settings-btn').toggleClass('active');
     });
 
-    /*================================
-    Owl Carousel
-    ==================================*/
-    function slider_area() {
-        var owl = $('.testimonial-carousel').owlCarousel({
-            margin: 50,
-            loop: true,
-            autoplay: false,
-            nav: false,
-            dots: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                450: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                1000: {
-                    items: 2
-                },
-                1360: {
-                    items: 1
-                },
-                1600: {
-                    items: 2
-                }
-            }
-        });
-    }
-    slider_area();
 
     /*================================
     Fullscreen Page

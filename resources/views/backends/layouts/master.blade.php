@@ -10,7 +10,7 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include("backends.layouts.partials.style")
-
+    @stack('style')
 </head>
 
 <body>
@@ -65,6 +65,7 @@
     <!-- offset area start -->
     @include("backends.layouts.partials.offset-area")
     @include("backends.layouts.partials.script")
+    @stack('script')
 </body>
 
 </html>
