@@ -17,12 +17,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Sidebar
-                                Types
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Roles
                             </span></a>
                         <ul class="collapse">
-                            <li><a href="index.html">Left Sidebar</a></li>
-                            <li><a href="index3-horizontalmenu.html">Horizontal Sidebar</a></li>
+                            <li><a href="{{ route('roles.index') }}">Roles List</a></li>
+                            <li><a href="{{ route("roles.create") }}">Role Create</a></li>
                         </ul>
                     </li>
                     {{-- <li>

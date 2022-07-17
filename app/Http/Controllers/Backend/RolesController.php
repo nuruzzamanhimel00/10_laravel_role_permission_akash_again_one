@@ -28,7 +28,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::latest()->get();
+        // dd($permissions);
+        return view("backends.pages.roles.create",compact('permissions'));
     }
 
     /**
@@ -39,7 +41,21 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //validaton create
+         $request->validate([
+            'name' => 'required|unique:roles'
+        ]);
+
+        $role = Role::create([
+            'name' => $request->name
+        ]);
+        $permissions = $request->permissions;
+        if(!empty($permissions)){
+            $role->syncPermissions($permissions);
+        }
+
+        return back();
+        // dd($request->all());
     }
 
     /**
