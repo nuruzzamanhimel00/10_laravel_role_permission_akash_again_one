@@ -40,14 +40,43 @@
                                 </label>
                             </div>
                             <br>
-                            @foreach ($permissions as $permission )
+                            @foreach ($permission_groups as $permission_group )
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input perGrpName"  data-gname="{{ $permission_group->group_name }}_checkbox" id="{{ $permission_group->group_name }}_checkbox"
+                                            >
+                                            <label class="form-check-label" for="permGrpClsId">
+                                                {{ $permission_group->group_name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @foreach ($permissions->where('group_name',$permission_group->group_name) as $permission )
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input singPerName {{ $permission_group->group_name }}_checkbox"
+                                                data-gname="{{ $permission_group->group_name }}_checkbox"
+                                                id="permissionName" name="permissions[]" value="{{ $permission->name }}">
+
+                                                <label class="form-check-label" for="permissionName">
+                                                    {{ $permission->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        <br>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
+                            {{-- @foreach ($permissions as $permission )
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="permissionName" name="permissions[]" value="{{ $permission->name }}">
                                     <label class="form-check-label" for="permissionName">
                                         {{ $permission->name }}
                                     </label>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Role name</button>
@@ -59,13 +88,5 @@
 @endsection
 
 @push('script')
-    <script>
-        $(document).on('change','#allPermission',function(){
-           if($(this).prop('checked')){
-            $("input[type=checkbox]").prop('checked',true);
-           }else {
-            $("input[type=checkbox]").prop('checked',false);
-            }
-        });
-    </script>
+    @include("backends.layouts.partials.role_creae_script")
 @endpush

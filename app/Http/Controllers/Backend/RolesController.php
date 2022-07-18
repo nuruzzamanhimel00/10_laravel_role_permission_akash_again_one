@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class RolesController extends Controller
 {
@@ -17,6 +18,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::all();
+
         return view("backends.pages.roles.index",compact('roles'));
 
     }
@@ -29,8 +31,10 @@ class RolesController extends Controller
     public function create()
     {
         $permissions = Permission::latest()->get();
+        $permission_groups = User::getPermissionGroups();
+        // return $permission_groups;
         // dd($permissions);
-        return view("backends.pages.roles.create",compact('permissions'));
+        return view("backends.pages.roles.create",compact('permissions','permission_groups'));
     }
 
     /**
