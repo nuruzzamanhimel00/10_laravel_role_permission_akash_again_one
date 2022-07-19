@@ -45,7 +45,18 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    action
+                                    <a href="{{ route('roles.edit',['role'=>$role->id]) }}" class="btn btn-success btn-sm">Edit</a>
+
+                                    <a  
+                                        onclick="event.preventDefault();
+                                            document.getElementById('roleDestry_{{ $role->id }}').submit();"
+                                        class="btn btn-danger btn-sm">Delete</a>
+
+                                    <form  action="{{ route('roles.destroy',['role'=>$role->id]) }}" method="POST" class="d-none" id="roleDestry_{{ $role->id }}">
+                                        @csrf
+                                    </form>
+
+                                    {{-- <a href="{{ route('roles.destroy',['role'=>$role->id]) }}" class="btn btn-danger btn-sm">Delete</a> --}}
                                 </td>
 
                             </tr>

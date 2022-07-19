@@ -80,3 +80,10 @@ $user->hasRole($role->name)
 ==> // All current roles will be removed from the user 
  $admin = Admin::find($id);
 $admin->roles()->detach();
+
+
+==> Role data find by id 
+1)   $role = Role::findById($id);
+
+==> Role er permission name wise permission check 
+{{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}

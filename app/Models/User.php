@@ -53,4 +53,25 @@ class User extends Authenticatable
         return $getpermission_group;
     }
 
+    public static function roleWiseAllParm($role_id){
+        $roleWiseAllParm =  DB::table('role_has_permissions')
+                        ->where('role_id',$role_id)
+                        ->get();
+        return $roleWiseAllParm;
+    }
+
+    public static function roleHasPermissions($role, $permissions){
+        $hsePermission = true;
+
+        foreach($permissions as $permission){
+
+            if($role->hasPermissionTo($permission->name)){
+                $hsePermission = false;
+                return $hsePermission;
+            }
+        }
+        return $hsePermission;
+    }
+
+
 }
