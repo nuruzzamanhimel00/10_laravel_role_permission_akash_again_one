@@ -39,7 +39,8 @@
         }else{
             $("#"+gname).prop('checked',true);
         }
-        console.log(gname);
+        singlepermissionwiseAllpermissionCheckboxCheck();
+        // console.log(gname);
 
     });
 
