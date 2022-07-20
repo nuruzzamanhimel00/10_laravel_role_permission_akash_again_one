@@ -34,6 +34,7 @@
                             <tr>
                                 <th>id</th>
                                 <th>name</th>
+                                <th>permissions</th>
                                 <th>Action</th>
 
                             </tr>
@@ -45,9 +46,16 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
+                                    @foreach ($role->permissions as $permission )
+                                    <span class="badge badge-primary">
+                                        {{ $permission->name }}
+                                    </span>
+                                    @endforeach
+                                </td>
+                                <td>
                                     <a href="{{ route('roles.edit',['role'=>$role->id]) }}" class="btn btn-success btn-sm">Edit</a>
 
-                                    <a  
+                                    <a
                                         onclick="event.preventDefault();
                                             document.getElementById('roleDestry_{{ $role->id }}').submit();"
                                         class="btn btn-danger btn-sm">Delete</a>
