@@ -94,3 +94,9 @@ $admin->roles()->detach();
 $role = Role::findById($id);
 $role->update(['name'=>$request->name])
 $role->syncPermissions($permissions);
+
+
+=====> single role permissions relation
+1) $role->permissions
+here , >permissions is  relation name
+ 

@@ -28,6 +28,7 @@
            <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Role List</h4>
+                @include("backends.layouts.partials.notify")
                 <div class="data-tables">
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
@@ -55,13 +56,16 @@
                                 <td>
                                     <a href="{{ route('roles.edit',['role'=>$role->id]) }}" class="btn btn-success btn-sm">Edit</a>
 
-                                    <a
+
+                                    <a href="{{ route('roles.destroy',['role'=>$role->id]) }}"
                                         onclick="event.preventDefault();
                                             document.getElementById('roleDestry_{{ $role->id }}').submit();"
                                         class="btn btn-danger btn-sm">Delete</a>
 
                                     <form  action="{{ route('roles.destroy',['role'=>$role->id]) }}" method="POST" class="d-none" id="roleDestry_{{ $role->id }}">
                                         @csrf
+                                        {{-- // method spoofing --}}
+                                        @method("DELETE")
                                     </form>
 
                                     {{-- <a href="{{ route('roles.destroy',['role'=>$role->id]) }}" class="btn btn-danger btn-sm">Delete</a> --}}
