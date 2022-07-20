@@ -34,8 +34,8 @@
                         Route::is("users.index") || Route::is("users.edit") || Route::is("users.create") ? 'in' : ''
                         }}
                         collapse">
-                            <li class="{{ Route::is("admin.index") ? "active" : '' }}"><a href="{{ route('users.index') }}">users List</a></li>
-                            <li class="{{ Route::is("admin.create") ? "active" : '' }}"><a href="{{ route("roles.create") }}">User Create</a></li>
+                            <li class="{{ Route::is("users.index") ? "active" : '' }}"><a href="{{ route('users.index') }}">users List</a></li>
+                            <li class="{{ Route::is("users.create") ? "active" : '' }}"><a href="{{ route("users.create") }}">User Create</a></li>
                         </ul>
                     </li>
 

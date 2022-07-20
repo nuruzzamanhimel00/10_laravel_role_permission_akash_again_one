@@ -119,4 +119,29 @@ For a given user,
 $roles = $user->getRoleNames();// Returns a collection
 
 ========================================
+
+### From Documentation : Using Permissions via Roles Section : 
+url: https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+# Assigning Roles:
+$user->assignRole('writer');
+
+// You can also assign multiple roles at once
+$user->assignRole('writer', 'admin');
+// or as an array
+$user->assignRole(['writer', 'admin']);
+
+A role can be removed from a user:
+
+$user->removeRole('writer');
+
+Roles can also be synced:
+
+// All current roles will be removed from the user and replaced by the array given
+$user->syncRoles(['writer', 'admin']);
+
+#Checking Roles
+You can determine if a user has a certain role:
+$user->hasRole('writer');
+// or at least one role from an array of roles:
+$user->hasRole(['editor', 'moderator']);
  

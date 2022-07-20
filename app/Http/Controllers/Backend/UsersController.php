@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -28,13 +29,10 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $permissions = Permission::latest()->get();
-        $permission_groups = User::getPermissionGroups();
-        // return $permission_groups;
-        // dd($permissions);
-        return view("backends.pages.Users.create",compact('permissions','permission_groups'));
+    public function create(){
+
+        $roles = Role::all();
+        return view("backends.pages.users.create",compact('roles'));
     }
 
     /**
@@ -47,18 +45,27 @@ class UsersController extends Controller
     {
          //validaton create
          $request->validate([
-            'name' => 'required|unique:Users'
+            'name' => 'required|string',
+            'email' => 'required|unique:users|string',
+            'password' => 'required|min:6',
+            'roles' => 'required'
         ]);
 
-        $role = Role::create([
-            'name' => $request->name
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+
         ]);
-        $permissions = $request->permissions;
-        if(!empty($permissions)){
-            $role->syncPermissions($permissions);
+
+        if($user){
+            if(count($request->roles)){
+                $user->syncRoles($request->roles);
+            }
+            return redirect()->route('users.index')->with('success','User Created Sucessfully');
         }
 
-        return back()->with('success','Role Created Sucessfully');
+
     }
 
 
