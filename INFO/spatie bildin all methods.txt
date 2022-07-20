@@ -99,4 +99,24 @@ $role->syncPermissions($permissions);
 =====> single role permissions relation
 1) $role->permissions
 here , >permissions is  relation name
+
+
+========================================
+
+15
+
+In your Model that uses the Spatie\Permission\Traits\HasRoles trait, which is in most cases User, you can call various methods for verifying or retrieving roles.
+They are:
+
+roles
+hasRole
+hasAnyRole
+hasAllRoles
+getRoleNames
+Usage example
+For a given user,
+
+$roles = $user->getRoleNames();// Returns a collection
+
+========================================
  
