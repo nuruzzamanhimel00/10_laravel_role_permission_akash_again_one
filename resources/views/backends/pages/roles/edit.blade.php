@@ -27,6 +27,7 @@
                     @include("backends.layouts.partials.notify")
                     <form action="{{ route("roles.update",['role'=>$role->id]) }}" method="POST">
                         @csrf
+                        {{-- // method spoofing --}}
                         @method('PUT')
                         <div class="form-group">
                             <label for="roleName">Role name</label>

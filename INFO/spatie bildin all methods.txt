@@ -87,3 +87,10 @@ $admin->roles()->detach();
 
 ==> Role er permission name wise permission check 
 {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}
+
+
+
+===> update role permission
+$role = Role::findById($id);
+$role->update(['name'=>$request->name])
+$role->syncPermissions($permissions);

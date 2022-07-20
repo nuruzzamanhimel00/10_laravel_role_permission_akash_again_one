@@ -92,7 +92,23 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //validaton create
+        $request->validate([
+            'name' => 'required|unique:roles,name,'.$id
+        ]);
+
+        $role = Role::findById($id);
+        $permissions = $request->permissions;
+
+        if( $role && $role->update(['name'=>$request->name])){
+            if(!empty($permissions)){
+                $role->syncPermissions($permissions);
+            }
+            return back()->with('success','Role Permission update Sucessfully');
+        }
+        return back()->with('error','Role Permission fail to update');
+
     }
 
     /**
