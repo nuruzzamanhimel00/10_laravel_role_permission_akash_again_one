@@ -114,6 +114,7 @@ class UsersController extends Controller
         if(count($request->roles) > 0){
             // old role deleted successfully
             $user->roles()->detach();
+            // model has role
             $user->assignRole($request->roles);
         }
 
@@ -128,10 +129,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-
-        $role = Role::findById($id);
-        if($role->delete()){
-            return redirect()->back()->with('success','Role Deleted successfuly');
+        $user = User::find($id);
+        if($user->roles()->detach() && $user->delete()){
+            return redirect()->back()->with('success','User Deleted successfuly');
         }
     }
 }
