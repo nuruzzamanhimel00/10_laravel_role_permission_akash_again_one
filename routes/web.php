@@ -38,3 +38,7 @@ Route::post('/login/submit',[LoginController::class, 'loign'])->name('admin.logi
 Route::post('/logout/submit',[LoginController::class, 'logout'])->name('admin.logout.submit');
 // forget password route
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
