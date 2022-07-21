@@ -118,6 +118,15 @@ For a given user,
 
 $roles = $user->getRoleNames();// Returns a collection
 
+ @forelse ($roles as $role )
+     <option value="{{ $role->id }}"
+        {{ $user-
+($role->name) ? 'selected' : '' }}
+           >{{ $role->name }}
+               </option>
+   @empty
+   @endforelse
+
 ========================================
 
 ### From Documentation : Using Permissions via Roles Section : 
@@ -144,4 +153,8 @@ You can determine if a user has a certain role:
 $user->hasRole('writer');
 // or at least one role from an array of roles:
 $user->hasRole(['editor', 'moderator']);
+
+#################### user all role delete spatie #####################
+$user = User::find($id);
+$user->roles()->detach()
  

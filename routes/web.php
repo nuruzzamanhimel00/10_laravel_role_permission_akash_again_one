@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Auth\LoginController;
+use App\Http\Controllers\Backend\Auth\ForgotPasswordController;
+use App\Http\Controllers\Backend\Auth\ResetPasswordController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -31,12 +33,18 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('/users', UsersController::class);
 });
 
-//login route
-Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/login/submit',[LoginController::class, 'loign'])->name('admin.login.submit');
-// logout route
-Route::post('/logout/submit',[LoginController::class, 'logout'])->name('admin.logout.submit');
-// forget password route
+Route::group(['prefix'=>'admin'],function(){
+  //login route
+    Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login/submit',[LoginController::class, 'loign'])->name('admin.login.submit');
+    // logout route
+    Route::post('/logout/submit',[LoginController::class, 'logout'])->name('admin.logout.submit');
+    // forget password route
+    Route::get('/password/reset',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+    Route::post('/password/reset',[ResetPasswordController::class, 'reset'])->name('admin.password.update');
+
+});
+
 
 
 Auth::routes();
