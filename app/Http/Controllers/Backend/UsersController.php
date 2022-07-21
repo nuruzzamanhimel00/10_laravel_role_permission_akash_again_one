@@ -82,12 +82,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findById($id);
-
-        // dd($Users_permissions);
-        $permissions = Permission::latest()->get();
-        $permission_groups = User::getPermissionGroups();
-        return view("backends.pages.Users.edit",compact('permissions','permission_groups','role'));
+        $user = User::find($id);
+        $roles = Role::all();
+        return view("backends.pages.users.edit",compact('roles','user'));
     }
 
     /**
@@ -99,23 +96,28 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         //validaton create
+
         $request->validate([
-            'name' => 'required|unique:Users,name,'.$id
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.$id,
         ]);
 
-        $role = Role::findById($id);
-        $permissions = $request->permissions;
-
-        if( $role && $role->update(['name'=>$request->name])){
-            if(!empty($permissions)){
-                $role->syncPermissions($permissions);
-            }
-            return back()->with('success','Role Permission update Sucessfully');
+        $user =  User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
         }
-        return back()->with('error','Role Permission fail to update');
+        $user->save();
 
+        if(count($request->roles) > 0){
+            // old role deleted successfully
+            $user->roles()->detach();
+            $user->assignRole($request->roles);
+        }
+
+        return redirect()->route('users.index')->with('success','User Update Sucessfully');
     }
 
     /**
