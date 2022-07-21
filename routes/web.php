@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -29,4 +30,11 @@ Route::group(['prefix'=>'admin'],function(){
     Route::resource('/roles', RolesController::class);
     Route::resource('/users', UsersController::class);
 });
+
+//login route
+Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login/submit',[LoginController::class, 'loign'])->name('admin.login.submit');
+// logout route
+Route::post('/logout/submit',[LoginController::class, 'logout'])->name('admin.logout.submit');
+// forget password route
 
