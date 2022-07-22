@@ -6,7 +6,15 @@
         <a class="dropdown-item" href="#">Settings</a>
         <a class="dropdown-item" href="#">Log Out</a>
     </div> &nbsp; &nbsp;
-    <button class="btn btn-danger">
+    <button class="btn btn-danger"
+    onclick="
+    event.preventDefault();
+    document.getElementById('adminLogoutId').submit();
+    "
+    >
         logout
     </button>
+    <form action="{{ route('admin.logout.submit') }}" id="adminLogoutId" method="POST">
+        @csrf
+    </form>
 </div>
