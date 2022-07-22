@@ -36,7 +36,7 @@ Route::group(['prefix'=>'admin'],function(){
 Route::group(['prefix'=>'admin'],function(){
   //login route
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/login/submit',[LoginController::class, 'loign'])->name('admin.login.submit');
+    Route::post('/login/submit',[LoginController::class, 'login'])->name('admin.login.submit');
     // logout route
     Route::post('/logout/submit',[LoginController::class, 'logout'])->name('admin.logout.submit');
     // forget password route
