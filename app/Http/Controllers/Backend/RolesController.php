@@ -18,7 +18,6 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::all();
-
         return view("backends.pages.roles.index",compact('roles'));
 
     }
@@ -51,7 +50,8 @@ class RolesController extends Controller
         ]);
 
         $role = Role::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'guard_name'=>'admin'
         ]);
         $permissions = $request->permissions;
         if(!empty($permissions)){
@@ -73,9 +73,15 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public static function findByIdRole($id ,$guardName){
+        if(empty($guardName)){
+            return $role = Role::findById($id,'admin');
+        }
+        return $role = Role::findById($id,$guardName);
+    }
     public function edit($id)
     {
-        $role = Role::findById($id);
+        $role = static::findByIdRole($id, 'admin');
 
         // dd($roles_permissions);
         $permissions = Permission::latest()->get();
@@ -98,7 +104,7 @@ class RolesController extends Controller
             'name' => 'required|unique:roles,name,'.$id
         ]);
 
-        $role = Role::findById($id);
+        $role = static::findByIdRole($id, 'admin');
         $permissions = $request->permissions;
 
         if( $role && $role->update(['name'=>$request->name])){
@@ -120,7 +126,7 @@ class RolesController extends Controller
     public function destroy($id)
     {
 
-        $role = Role::findById($id);
+        $role = static::findByIdRole($id, 'admin');
         if($role->delete()){
             return redirect()->back()->with('success','Role Deleted successfuly');
         }

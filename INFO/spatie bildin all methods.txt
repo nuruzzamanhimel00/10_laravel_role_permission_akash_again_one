@@ -157,4 +157,8 @@ $user->hasRole(['editor', 'moderator']);
 #################### user all role delete spatie #####################
 $user = User::find($id);
 $user->roles()->detach()
+
+############# Define Role guard name #################
+ $roleCreate = Role::create(['name'=>$request->name,'guard_name'=>'admin']);
+ Role::findById($id,'admin');
  
