@@ -33,7 +33,7 @@ class AdminsController extends Controller
     public function create(){
 
         $roles = Role::all();
-        return view("backends.pages.users.create",compact('roles'));
+        return view("backends.pages.admins.create",compact('roles'));
     }
 
     /**
@@ -47,8 +47,7 @@ class AdminsController extends Controller
          //validaton create
          $request->validate([
             'name' => 'required|string',
-            'username' => 'required|unique:users|string',
-            'email' => 'required|unique:users|string',
+            'email' => 'required|unique:admins|string',
             'password' => 'required|min:6',
             'roles' => 'required'
         ]);
@@ -66,7 +65,7 @@ class AdminsController extends Controller
                 //model_has_roles
                 $admin->syncRoles($request->roles);
             }
-            return redirect()->route('users.index')->with('success','Admin Created Sucessfully');
+            return redirect()->route('admins.index')->with('success','Admin Created Sucessfully');
         }
 
 
@@ -136,8 +135,8 @@ class AdminsController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if($user->roles()->detach() && $user->delete()){
+        $admin = Admin::find($id);
+        if($admin->roles()->detach() && $admin->delete()){
             return redirect()->back()->with('success','User Deleted successfuly');
         }
     }
