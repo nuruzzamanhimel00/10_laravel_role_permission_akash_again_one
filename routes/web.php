@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\Auth\LoginController;
-use App\Http\Controllers\Backend\Auth\ForgotPasswordController;
-use App\Http\Controllers\Backend\Auth\ResetPasswordController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Backend\AdminsController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\Auth\LoginController;
+use App\Http\Controllers\Backend\Auth\ResetPasswordController;
+use App\Http\Controllers\Backend\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth:admin']],function(){
     Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('/roles', RolesController::class);
     Route::resource('/users', UsersController::class);
+    Route::resource('/admins', AdminsController::class);
 });
 
 Route::group(['prefix'=>'admin'],function(){

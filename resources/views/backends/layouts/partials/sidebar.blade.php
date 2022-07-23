@@ -27,15 +27,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Users
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Admin
                             </span></a>
                         <ul class="
                         {{
-                        Route::is("users.index") || Route::is("users.edit") || Route::is("users.create") ? 'in' : ''
+                        Route::is("admins.index") || Route::is("admins.edit") || Route::is("admins.create") ? 'in' : ''
                         }}
                         collapse">
-                            <li class="{{ Route::is("users.index") ? "active" : '' }}"><a href="{{ route('users.index') }}">users List</a></li>
-                            <li class="{{ Route::is("users.create") ? "active" : '' }}"><a href="{{ route("users.create") }}">User Create</a></li>
+                            <li class="{{ Route::is("admins.index") ? "active" : '' }}"><a href="{{ route('admins.index') }}">admins List</a></li>
+                            <li class="{{ Route::is("admins.create") ? "active" : '' }}"><a href="{{ route("admins.create") }}">Admin Create</a></li>
                         </ul>
                     </li>
 
