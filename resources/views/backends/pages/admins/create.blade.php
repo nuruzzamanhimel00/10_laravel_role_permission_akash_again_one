@@ -5,15 +5,15 @@
 @endpush
 
 @section('admin-title')
- Admin Title - User Create
+ Admin Title - Admin Create
 @endsection
 
 @section("admin_header_area")
 <div class="breadcrumbs-area clearfix">
-    <h4 class="page-title pull-left">User</h4>
+    <h4 class="page-title pull-left">Admin</h4>
     <ul class="breadcrumbs pull-left">
         <li><a href="index.html">Home</a></li>
-        <li><span>User Create</span></li>
+        <li><span>Admin Create</span></li>
     </ul>
 </div>
 @endsection
@@ -23,9 +23,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Basic User Create</h4>
+                    <h4 class="header-title">Basic Admin Create</h4>
                     @include("backends.layouts.partials.notify")
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('admins.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                           <label for="name">Name</label>

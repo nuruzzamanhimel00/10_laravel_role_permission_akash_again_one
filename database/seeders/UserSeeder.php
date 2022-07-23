@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +25,16 @@ class UserSeeder extends Seeder
             $user->password= Hash::make("123456789");
             $user->remember_token = Str::random(10);
             $user->save();
+        }
+        $admin = Admin::where('email','superadmin@gmail.com')->first();
+        if(is_null($admin)){
+            $admin = new Admin();
+            $admin->name = "auperadmin";
+            $admin->username = "auperadmin";
+            $admin->email = "superadmin@gmail.com";
+            $admin->password= Hash::make("123456789");
+            $admin->remember_token = Str::random(10);
+            $admin->save();
         }
     }
 }

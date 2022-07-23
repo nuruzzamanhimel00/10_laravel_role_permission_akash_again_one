@@ -47,23 +47,26 @@ class AdminsController extends Controller
          //validaton create
          $request->validate([
             'name' => 'required|string',
+            'username' => 'required|unique:users|string',
             'email' => 'required|unique:users|string',
             'password' => 'required|min:6',
             'roles' => 'required'
         ]);
 
-        $user = User::create([
+        $admin = Admin::create([
             'name' => $request->name,
+            'username' => $request->name.rand(1,1000),
             'email' => $request->email,
             'password' => Hash::make($request->password)
 
         ]);
 
-        if($user){
+        if($admin){
             if(count($request->roles)){
-                $user->syncRoles($request->roles);
+                //model_has_roles
+                $admin->syncRoles($request->roles);
             }
-            return redirect()->route('users.index')->with('success','User Created Sucessfully');
+            return redirect()->route('users.index')->with('success','Admin Created Sucessfully');
         }
 
 
@@ -83,9 +86,9 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $admin = Admin::find($id);
         $roles = Role::all();
-        return view("backends.pages.users.edit",compact('roles','user'));
+        return view("backends.pages.admins.edit",compact('roles','admin'));
     }
 
     /**
@@ -101,25 +104,28 @@ class AdminsController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:admins,email,'.$id,
         ]);
 
-        $user =  User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if(!empty($request->password)){
-            $user->password = Hash::make($request->password);
+        $admin =  Admin::find($id);
+        $admin->name = $request->name;
+        if(empty($admin->username)){
+            $admin->username = $request->name.rand(1,1000);
         }
-        $user->save();
+        $admin->email = $request->email;
+        if(!empty($request->password)){
+            $admin->password = Hash::make($request->password);
+        }
+        $admin->save();
 
         if(count($request->roles) > 0){
             // old role deleted successfully
-            $user->roles()->detach();
+            $admin->roles()->detach();
             // model has role
-            $user->assignRole($request->roles);
+            $admin->assignRole($request->roles);
         }
 
-        return redirect()->route('users.index')->with('success','User Update Sucessfully');
+        return redirect()->route('admins.index')->with('success','Admin Update Sucessfully');
     }
 
     /**
