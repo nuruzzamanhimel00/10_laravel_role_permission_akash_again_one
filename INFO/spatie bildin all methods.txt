@@ -161,4 +161,8 @@ $user->roles()->detach()
 ############# Define Role guard name #################
  $roleCreate = Role::create(['name'=>$request->name,'guard_name'=>'admin']);
  Role::findById($id,'admin');
+
+############# AUth user Permission check In laravel spatie ##############
+auth()->user()->can('permission')
+https://stackoverflow.com/questions/56878326/how-to-check-laravel-spatie-permission-in-api-controller-for-current-login-user
  

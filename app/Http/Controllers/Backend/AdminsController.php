@@ -7,11 +7,22 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
 class AdminsController extends Controller
 {
+    protected $user;
+
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            $this->user = Auth::guard('admin')->user();
+            return $next($request);
+        });
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +30,9 @@ class AdminsController extends Controller
      */
     public function index()
     {
+        if(is_null($this->user) || !$this->user->can('admin.view') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $admins = Admin::all();
 
         return view("backends.pages.admins.index",compact('admins'));
@@ -32,6 +46,9 @@ class AdminsController extends Controller
      */
     public function create(){
 
+        if(is_null($this->user) || !$this->user->can('admin.create') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $roles = Role::all();
         return view("backends.pages.admins.create",compact('roles'));
     }
@@ -44,6 +61,9 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null($this->user) || !$this->user->can('admin.store') ){
+            abort(403, 'Unauthonticated Access');
+        }
          //validaton create
          $request->validate([
             'name' => 'required|string',
@@ -85,6 +105,9 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
+        if(is_null($this->user) || !$this->user->can('admin.edit') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $admin = Admin::find($id);
         $roles = Role::all();
         return view("backends.pages.admins.edit",compact('roles','admin'));
@@ -99,6 +122,9 @@ class AdminsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(is_null($this->user) || !$this->user->can('admin.update') ){
+            abort(403, 'Unauthonticated Access');
+        }
         //validaton create
 
         $request->validate([
@@ -135,6 +161,9 @@ class AdminsController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null($this->user) || !$this->user->can('admin.delete') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $admin = Admin::find($id);
         if($admin->roles()->detach() && $admin->delete()){
             return redirect()->back()->with('success','User Deleted successfuly');

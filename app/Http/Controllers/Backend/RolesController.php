@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
 
 class RolesController extends Controller
 {
+    public $user;
+
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            $this->user = Auth::guard('admin')->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +26,9 @@ class RolesController extends Controller
      */
     public function index()
     {
+        if(is_null($this->user) || !$this->user->can('role.view') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $roles = Role::all();
         return view("backends.pages.roles.index",compact('roles'));
 
@@ -29,6 +41,11 @@ class RolesController extends Controller
      */
     public function create()
     {
+
+        if(is_null($this->user) || !$this->user->can('role.create') ){
+            abort(403, 'Unauthonticated Access');
+        }
+
         $permissions = Permission::latest()->get();
         $permission_groups = User::getPermissionGroups();
         // return $permission_groups;
@@ -44,6 +61,9 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null($this->user) || !$this->user->can('role.store') ){
+            abort(403, 'Unauthonticated Access');
+        }
          //validaton create
          $request->validate([
             'name' => 'required|unique:roles'
@@ -76,6 +96,9 @@ class RolesController extends Controller
 
     public function edit($id)
     {
+        if(is_null($this->user) || !$this->user->can('role.edit') ){
+            abort(403, 'Unauthonticated Access');
+        }
         $role = static::findByIdGardName($id, 'admin');
 
         // dd($roles_permissions);
@@ -94,6 +117,9 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
 
+        if(is_null($this->user) || !$this->user->can('role.update') ){
+            abort(403, 'Unauthonticated Access');
+        }
         //validaton create
         $request->validate([
             'name' => 'required|unique:roles,name,'.$id
@@ -120,6 +146,9 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null($this->user) || !$this->user->can('role.delete') ){
+            abort(403, 'Unauthonticated Access');
+        }
 
         $role = static::findByIdGardName($id, 'admin');
         if($role->delete()){

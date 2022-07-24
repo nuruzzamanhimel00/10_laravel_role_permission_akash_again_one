@@ -44,6 +44,8 @@ class RolePermissionSeeder extends Seeder
                 'group_name' => 'admin',
                 'permissions' => [
                     'admin.view',
+                    'admin.create',
+                    'admin.store',
                     'admin.edit',
                     'admin.update',
                     'admin.delete',
@@ -51,9 +53,11 @@ class RolePermissionSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'role',
+                'group_name' => 'admin',
                 'permissions' => [
                     'role.view',
+                    'role.create',
+                    'role.store',
                     'role.edit',
                     'role.update',
                     'role.delete',
