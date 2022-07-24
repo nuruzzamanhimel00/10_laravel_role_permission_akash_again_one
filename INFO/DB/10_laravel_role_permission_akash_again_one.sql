@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 04, 2022 at 07:30 PM
--- Server version: 5.7.24
--- PHP Version: 7.4.27
+-- Host: 127.0.0.1
+-- Generation Time: Jul 24, 2022 at 07:22 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `10_laravel_role_permission_akash`
+-- Database: `10_laravel_role_permission_akash_again_one`
 --
 
 -- --------------------------------------------------------
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -43,11 +43,11 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nuruzzaman Himel', 'himel2022', 'nuruzzaman.himel147@gmail.com', NULL, '$2y$10$OftzYWibxQyYU8cTlUf1fu3hWSrTJxo5Hd1lX.XHh8uoTozHNSKJ.', 'tLi9WqGFdJjievZCDeRDEpR720HrOspICOpmDFiHHfAnVrVJtTKjXhVVZRVy', '2022-04-04 02:59:18', '2022-04-04 02:59:18'),
-(2, 'admin', 'admin2022', 'admin@gmail.com', NULL, '$2y$10$/Zx9tneyw4aE7ued9GZdK.lUIh8UEu6NTpck6iqG9hdXj3okq0uqW', NULL, '2022-04-04 03:03:18', '2022-04-04 03:04:51'),
-(3, 'editor', 'editor2022', 'editor@gmail.com', NULL, '$2y$10$ZHGw0/kf9MLw.v3V3fzmhurdaND6NF5BhxFYe4lqgnqEPbkdD9yRW', NULL, '2022-04-04 03:03:42', '2022-04-04 03:04:31'),
-(4, 'user', 'user2022', 'user@gmail.com', NULL, '$2y$10$Gcdxm4tGVORdfuxTf1F9zeeMCuyaiZD6csew4yAWE6cT/dhvDD9Gi', NULL, '2022-04-04 03:04:08', '2022-04-04 03:04:08');
+INSERT INTO `admins` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'auperadmin', 'superadmin@gmail.com', 'auperadmin', NULL, '$2y$10$l.1OoU6RuP644pFX0PaHOeHfxEYXE5ewmY7Tb9I13fSj4BrbZnkXe', 'B74KPanc5V', '2022-07-24 01:07:45', '2022-07-24 01:07:45'),
+(2, 'admin1', 'admin1@gmail.com', 'admin1969', NULL, '$2y$10$wu4w1j/jjlVaNxir42794uV1ydEHNlVISo0CoNfKwH8XUIzGKdytO', NULL, '2022-07-24 01:21:49', '2022-07-24 01:21:49'),
+(3, 'admin2', 'editor@gmail.com', 'admin2137', NULL, '$2y$10$JU0cYlul2.6Q2PpQCApHuezj4y/nJ9WPW535oeIcy2.xQYawi5WYG', NULL, '2022-07-24 01:22:10', '2022-07-24 01:22:25'),
+(4, 'user', 'user@gmail.com', 'user922', NULL, '$2y$10$JUdVnzf8haWakefkz90/8eSZwaLkA3KJ3UCaeZlpNqL4cioTsLSbS', NULL, '2022-07-24 01:22:58', '2022-07-24 01:22:58');
 
 -- --------------------------------------------------------
 
@@ -57,11 +57,12 @@ INSERT INTO `admins` (`id`, `name`, `username`, `email`, `email_verified_at`, `p
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -81,11 +82,12 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(15, '2014_10_12_000000_create_users_table', 1),
-(16, '2014_10_12_100000_create_password_resets_table', 1),
-(17, '2019_08_19_000000_create_failed_jobs_table', 1),
-(18, '2022_03_29_152315_create_permission_tables', 1),
-(19, '2022_04_03_142518_create_admins_table', 1);
+(109, '2014_10_12_000000_create_users_table', 1),
+(110, '2014_10_12_100000_create_password_resets_table', 1),
+(111, '2019_08_19_000000_create_failed_jobs_table', 1),
+(112, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(113, '2022_07_15_104158_create_permission_tables', 1),
+(114, '2022_07_22_042408_create_admins_table', 1);
 
 -- --------------------------------------------------------
 
@@ -116,10 +118,11 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\Admin', 1),
-(2, 'App\\Admin', 2),
-(3, 'App\\Admin', 3),
-(4, 'App\\Admin', 4);
+(1, 'App\\Models\\Admin', 1),
+(2, 'App\\Models\\Admin', 2),
+(3, 'App\\Models\\Admin', 2),
+(3, 'App\\Models\\Admin', 3),
+(4, 'App\\Models\\Admin', 4);
 
 -- --------------------------------------------------------
 
@@ -153,24 +156,46 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at`, `updated_at`) VALUES
-(1, 'dashboard.view', 'admin', 'dashboard', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(2, 'blog.view', 'admin', 'blog', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(3, 'blog.edit', 'admin', 'blog', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(4, 'blog.update', 'admin', 'blog', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(5, 'blog.delete', 'admin', 'blog', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(6, 'blog.approve', 'admin', 'blog', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(7, 'admin.view', 'admin', 'admin', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(8, 'admin.edit', 'admin', 'admin', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(9, 'admin.update', 'admin', 'admin', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(10, 'admin.delete', 'admin', 'admin', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(11, 'admin.approve', 'admin', 'admin', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(12, 'role.view', 'admin', 'role', '2022-04-04 02:57:53', '2022-04-04 02:57:53'),
-(13, 'role.edit', 'admin', 'role', '2022-04-04 02:57:54', '2022-04-04 02:57:54'),
-(14, 'role.update', 'admin', 'role', '2022-04-04 02:57:54', '2022-04-04 02:57:54'),
-(15, 'role.delete', 'admin', 'role', '2022-04-04 02:57:54', '2022-04-04 02:57:54'),
-(16, 'role.approve', 'admin', 'role', '2022-04-04 02:57:54', '2022-04-04 02:57:54'),
-(17, 'profile.view', 'admin', 'profile', '2022-04-04 02:57:54', '2022-04-04 02:57:54'),
-(18, 'profile.edit', 'admin', 'profile', '2022-04-04 02:57:54', '2022-04-04 02:57:54');
+(1, 'dashboard.view', 'admin', 'dashboard', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(2, 'blog.view', 'admin', 'blog', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(3, 'blog.edit', 'admin', 'blog', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(4, 'blog.update', 'admin', 'blog', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(5, 'blog.delete', 'admin', 'blog', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(6, 'blog.approve', 'admin', 'blog', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(7, 'admin.view', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(8, 'admin.create', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(9, 'admin.store', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(10, 'admin.edit', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(11, 'admin.update', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(12, 'admin.delete', 'admin', 'admin', '2022-07-24 01:07:47', '2022-07-24 01:07:47'),
+(13, 'admin.approve', 'admin', 'admin', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(14, 'role.view', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(15, 'role.create', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(16, 'role.store', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(17, 'role.edit', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(18, 'role.update', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(19, 'role.delete', 'admin', 'role', '2022-07-24 01:07:48', '2022-07-24 01:07:48'),
+(20, 'role.approve', 'admin', 'role', '2022-07-24 01:07:49', '2022-07-24 01:07:49'),
+(21, 'profile.view', 'admin', 'profile', '2022-07-24 01:07:49', '2022-07-24 01:07:49'),
+(22, 'profile.edit', 'admin', 'profile', '2022-07-24 01:07:49', '2022-07-24 01:07:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -191,10 +216,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'superadmin', 'admin', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(2, 'admin', 'admin', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(3, 'editor', 'admin', '2022-04-04 02:57:52', '2022-04-04 02:57:52'),
-(4, 'user', 'admin', '2022-04-04 02:57:52', '2022-04-04 02:57:52');
+(1, 'superadmin', 'admin', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(2, 'admin', 'admin', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(3, 'editor', 'admin', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(4, 'user', 'admin', '2022-07-24 01:07:46', '2022-07-24 01:07:46'),
+(5, 'user test', 'admin', '2022-07-24 01:10:16', '2022-07-24 01:10:16');
 
 -- --------------------------------------------------------
 
@@ -213,40 +239,56 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
 (2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
 (3, 1),
+(3, 2),
+(3, 3),
 (4, 1),
+(4, 3),
 (5, 1),
 (6, 1),
+(6, 2),
 (7, 1),
+(7, 2),
+(7, 3),
+(7, 4),
 (8, 1),
+(8, 2),
 (9, 1),
+(9, 2),
 (10, 1),
+(10, 2),
 (11, 1),
 (12, 1),
 (13, 1),
+(13, 2),
 (14, 1),
+(14, 2),
+(14, 3),
+(14, 4),
 (15, 1),
+(15, 2),
 (16, 1),
+(16, 2),
 (17, 1),
-(18, 1),
-(1, 2),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 2),
-(12, 2),
 (17, 2),
-(18, 2),
-(2, 3),
-(3, 3),
-(4, 3),
-(5, 3),
-(6, 3),
-(17, 3),
-(18, 3);
+(18, 1),
+(19, 1),
+(20, 1),
+(20, 2),
+(21, 1),
+(21, 2),
+(21, 3),
+(21, 4),
+(21, 5),
+(22, 1),
+(22, 2),
+(22, 5);
 
 -- --------------------------------------------------------
 
@@ -259,7 +301,7 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -270,7 +312,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nuruzzaman Himel', 'n.himel143@gmail.com', NULL, '$2y$10$hQjZGqzSHE0fk128Gl4o7eHTvRG8945Nu6qCWvb1k6x3NSf0EnjK.', NULL, '2022-04-04 02:57:52', '2022-04-04 02:57:52');
+(1, 'Nuruzzaman Himel', 'nuruzzaman147@gmail.com', NULL, '$2y$10$aWkq2d3RjQcIdrZjdjrgS.Gv1tU6Bku6rR88u2xOYGsVwjzhiK926', 'k2umIJcklM', '2022-07-24 01:07:45', '2022-07-24 01:07:45');
 
 --
 -- Indexes for dumped tables
@@ -281,14 +323,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `admins_username_unique` (`username`),
-  ADD UNIQUE KEY `admins_email_unique` (`email`);
+  ADD UNIQUE KEY `admins_email_unique` (`email`),
+  ADD UNIQUE KEY `admins_username_unique` (`username`);
 
 --
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
 -- Indexes for table `migrations`
@@ -321,7 +364,15 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `permissions_name_guard_name_group_name_unique` (`name`,`guard_name`,`group_name`);
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `roles`
@@ -364,19 +415,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
