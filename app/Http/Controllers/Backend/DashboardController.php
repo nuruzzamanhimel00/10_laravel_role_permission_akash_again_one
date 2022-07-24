@@ -20,7 +20,7 @@ class DashboardController extends Controller
     public function index(){
 
     if(is_null($this->user) || !$this->user->can('dashboard.view') ){
-        abort(403, 'Unauthonticated Access');
+        abort(403, 'Sorry !! You are unauthorized to view Dashboard.');
     }
        return view("backends.pages.dashboad.index");
     }

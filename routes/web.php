@@ -35,7 +35,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth:admin']],function(){
     Route::resource('/admins', AdminsController::class);
 });
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin','middleware'=>['authCheck']],function(){
   //login route
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login/submit',[LoginController::class, 'login'])->name('admin.login.submit');
