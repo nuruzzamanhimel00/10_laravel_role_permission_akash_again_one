@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -53,7 +54,7 @@ class RolePermissionSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'admin',
+                'group_name' => 'role',
                 'permissions' => [
                     'role.view',
                     'role.create',
@@ -87,5 +88,11 @@ class RolePermissionSeeder extends Seeder
                 $superAdmin->givePermissionTo($permissionCreate);
             }
         }
+
+        $admin = Admin::where('email','superadmin@gmail.com')->first();
+        // and assing role is a superadmin
+        // $admin->assignRole('superadmin');
+        //or
+        $admin->assignRole([1]);
     }
 }

@@ -30,9 +30,9 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        if(is_null($this->user) || !$this->user->can('admin.view') ){
-            abort(403, 'Unauthonticated Access');
-        }
+        // if(is_null($this->user) || !$this->user->can('admin.view') ){
+        //     abort(403, 'Unauthonticated Access');
+        // }
         $admins = Admin::all();
 
         return view("backends.pages.admins.index",compact('admins'));

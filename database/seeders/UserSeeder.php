@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
             $admin->password= Hash::make("123456789");
             $admin->remember_token = Str::random(10);
             $admin->save();
+
         }
     }
 }
