@@ -58,19 +58,23 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="{{ route('admins.edit',['admin'=>$admin->id]) }}" class="btn btn-success btn-sm">Edit</a>
+                                    @if($authUser->can('admin.edit'))
+                                        <a href="{{ route('admins.edit',['admin'=>$admin->id]) }}" class="btn btn-success btn-sm">Edit</a>
+                                    @endif
 
 
-                                    <a href="{{ route('admins.destroy',['admin'=>$admin->id]) }}"
-                                        onclick="event.preventDefault();
-                                            document.getElementById('adminDestry_{{ $admin->id }}').submit();"
-                                        class="btn btn-danger btn-sm">Delete</a>
+                                    @if($authUser->can('admin.delete'))
+                                        <a href="{{ route('admins.destroy',['admin'=>$admin->id]) }}"
+                                            onclick="event.preventDefault();
+                                                document.getElementById('adminDestry_{{ $admin->id }}').submit();"
+                                            class="btn btn-danger btn-sm">Delete</a>
 
-                                    <form  action="{{ route('admins.destroy',['admin'=>$admin->id]) }}" method="POST" class="d-none" id="adminDestry_{{ $admin->id }}">
-                                        @csrf
-                                        {{-- // method spoofing --}}
-                                        @method("DELETE")
-                                    </form>
+                                        <form  action="{{ route('admins.destroy',['admin'=>$admin->id]) }}" method="POST" class="d-none" id="adminDestry_{{ $admin->id }}">
+                                            @csrf
+                                            {{-- // method spoofing --}}
+                                            @method("DELETE")
+                                        </form>
+                                    @endif
 
                                     {{-- <a href="{{ route('admins.destroy',['role'=>$role->id]) }}" class="btn btn-danger btn-sm">Delete</a> --}}
                                 </td>

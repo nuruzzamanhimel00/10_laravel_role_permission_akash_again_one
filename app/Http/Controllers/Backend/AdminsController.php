@@ -34,8 +34,8 @@ class AdminsController extends Controller
         //     abort(403, 'Unauthonticated Access');
         // }
         $admins = Admin::all();
-
-        return view("backends.pages.admins.index",compact('admins'));
+        $authUser = $this->user;
+        return view("backends.pages.admins.index",compact('admins','authUser'));
 
     }
 

@@ -19,6 +19,7 @@ class RolesController extends Controller
             return $next($request);
         });
     }
+
     /**
      * Display a listing of the resource.
      *

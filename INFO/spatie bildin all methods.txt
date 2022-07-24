@@ -165,6 +165,13 @@ $user->roles()->detach()
 ############# AUth user Permission check In laravel spatie ##############
 auth()->user()->can('permission')
 https://stackoverflow.com/questions/56878326/how-to-check-laravel-spatie-permission-in-api-controller-for-current-login-user
+### permission check in blade  file
+  @php
+                    $auth = Auth::guard('admin')->user();
+                @endphp
+ @if($auth->can('admin.view'))
+                            <li class="{{ Route::is("admins.index") ? "active" : '' }}"><a href="{{ route('admins.index') }}">admins List</a></li>
+                        @endif
 
 ########## MODEL HAS ROLE ASSIGN ####################
 URL: https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
